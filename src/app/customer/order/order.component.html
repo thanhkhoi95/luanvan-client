@@ -1,0 +1,32 @@
+<div class="order">
+  <perfect-scrollbar style="flex: 1">
+    <mat-selection-list>
+      <div *ngFor="let item of foodByCategories">
+        <h3 mat-subheader>{{item.category}}</h3>
+        <mat-list-option *ngFor="let food of item.foods" (selectionChange)="onSelect(food, $event)">
+          <div class="content">
+            <div class="text">
+              <h4 mat-line>{{food.name}}</h4>
+              <p mat-line> {{food.description}} </p>
+            </div>
+            <div class="input">
+              <input [(ngModel)]="food.quantity" type="text" placeholder="quality">
+            </div>
+          </div>
+
+        </mat-list-option>
+        <mat-divider></mat-divider>
+      </div>
+
+    </mat-selection-list>
+
+  </perfect-scrollbar>
+</div>
+<div class="foolter">
+  <button class="btn btn-order" (click)="onOrder()">
+    Order Now
+  </button>
+  <button style="margin-left: 8px;" class="btn btn-order" (click)="leave()">
+    Leave
+  </button>
+</div>

@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .header {
+    display: flex;
+    width: 960px;
+    justify-content: flex-end;
+    button {
+      margin-top: 16px;
+    }
+  }
+  .table-board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px;
+    .table-card {
+      margin: 40px;
+      max-width: 200px;
+      img {
+        width: 100%;
+      }
+      .detail {
+        display: flex;
+        h4 {
+          flex: 2;
+          text-transform: uppercase;
+          i {
+            color: red;
+          }
+        }
+        h4.available {
+          i {
+            color: greenyellow;
+          }
+        }
+        h5 {
+          flex: 1;
+          animation: neon 2s infinite;
+        }
+      }
+    }
+  }
+}
+@keyframes neon {
+  0%   { color: blue }
+  33%   { color: rgb(72, 255, 243) }
+  100% { color: greenyellow }
+}
