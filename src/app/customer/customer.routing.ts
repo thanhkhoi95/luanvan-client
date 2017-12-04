@@ -12,7 +12,6 @@ import { BillGuardService } from './providers/guard-service/bill.guard';
 const routes: Routes = [
     {
         path: '', component: CustomerComponent, children: [
-            {path: 'table', component: TableComponent},
             {path: 'order', component: OrderComponent, canActivate: [OrderGuardService]},
             {path: 'bill', component: BillComponent, canActivate: [BillGuardService]},
             {path: 'welcome', component: WelcomeComponent},
