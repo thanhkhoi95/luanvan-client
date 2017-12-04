@@ -16,12 +16,12 @@ export class TablesComponent implements OnInit {
   ngOnInit() {
     this.tableState.tables.subscribe(tables => {
       this.tables = tables;
-      console.log(this.tables);
+      // console.log(this.tables);
     });
     this.tableState.getTables();
   }
   viewOrder(table: ITable) {
-    if (table.id) {
+    if (table.id && table.status === 'serving') {
       this.router.navigate(['kitchen', 'order', table.id]);
     }
   }
