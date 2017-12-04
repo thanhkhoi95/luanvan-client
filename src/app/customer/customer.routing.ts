@@ -1,5 +1,4 @@
 import { WelcomeComponent } from './welcome/welcome.component';
-import { TableComponent } from './table/table.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomerComponent } from './customer.component';

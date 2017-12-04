@@ -55,7 +55,6 @@ export class OrderComponent implements OnInit {
       });
       console.log('select', this.foods);
     }
-
   }
 
   onOrder() {

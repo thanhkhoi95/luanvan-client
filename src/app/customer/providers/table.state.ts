@@ -17,13 +17,14 @@ export class TableState {
     }
 
     login(name: string): Observable<any> {
-        return this.tableHttpService.loginTable(name).map(token => {
-            this.localStorage.set('token', token.toString());
-            const table = this.jwtHelper.decodeToken(token);
+        return this.tableHttpService.loginTable(name).map(res => {
+            this.localStorage.set('token', res.token.toString());
+            const table = this.jwtHelper.decodeToken(res.token.toString());
             this.localStorage.set('table', table);
             console.log('table:', table);
             this._table.next(table);
-            return { table: table, token: token };
+            console.log(res);
+            return res;
         });
     }
 

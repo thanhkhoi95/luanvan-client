@@ -19,9 +19,9 @@ export class TableHttpService {
         });
     }
 
-    loginTable(tableName: string): Observable<string> {
+    loginTable(tableName: string): Observable<any> {
         return this.httpClient.post('/api/auth/tablelogin', { name: tableName }).map(data => {
-            return data['data']['token'] as string;
+            return data['data'];
         });
     }
 

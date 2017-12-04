@@ -27,9 +27,11 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
 
   onEnter(tableName: string) {
     this.tableState.login(tableName).subscribe((res: any) => {
-        res.data.table._id = res.data.table.id;
-        this.socketService.init(res.token, () => {
-          this.socketService.updateTable(res.data.table);
+      console.log(res);
+      res.table._id = res.table.id;
+      console.log(res.table);
+      this.socketService.init(res.token, () => {
+        this.socketService.updateTable(res.table);
       });
       this.router.navigate(['order']);
     });
