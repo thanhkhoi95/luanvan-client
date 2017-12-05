@@ -9,16 +9,12 @@ export class OrderGuardService implements CanActivate {
         private router: Router) { }
 
     canActivate() {
+        console.log('asdf');
         const table = this.localStorage.get('table');
-        if (table) {
-            if (this.localStorage.get('order')) {
-                this.router.navigate(['/bill']);
-                return false;
-            }
-            return true;
-        } else {
+        if (!table) {
             this.router.navigate(['/welcome']);
             return false;
         }
+        return true;
     }
 }

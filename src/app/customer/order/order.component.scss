@@ -1,49 +1,47 @@
 :host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  .order {
-    height: 80%;
-    width: 720px;
-    background-color: rgb(255, 253, 205);
-    .content {
-        display: flex;
-        .text {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            h4 {
-                margin: 0;
-                padding-top: 8px;
-            }
-            p { 
-                margin: 0;
-                padding-top: 8px;
-            }
-        }
-        .input {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            input {
-                width: 60px;
-                border: 0;
-                padding: 8px 8px;
-                text-align: center;
-            }
-        }
-    }
-  }
-  .foolter {
     display: flex;
     justify-content: center;
-    .btn-order {
-        margin-top: 16px;
-      text-align: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    .order {
+        height: 80%;
+        width: 720px;
+        background-color: rgb(255, 253, 205);
+        .content {
+            display: flex;
+            .text {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                h4 {
+                    margin: 0;
+                    padding-top: 8px;
+                }
+                p {
+                    margin: 0;
+                    padding-top: 8px;
+                }
+            }
+            .input {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                input {
+                    width: 60px;
+                    border: 0;
+                    padding: 8px 8px;
+                    text-align: center;
+                }
+            }
+        }
     }
-  }
+    .foolter {
+        display: flex;
+        justify-content: center;
+        .btn-order {
+            margin-top: 16px;
+            text-align: center;
+        }
+    }
 }
-
-

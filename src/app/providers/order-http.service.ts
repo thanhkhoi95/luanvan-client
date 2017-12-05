@@ -34,6 +34,7 @@ export class OrderHttpService {
   }
 
   updateStatusFood(orderId: string, foodId: string, status: string) {
+    console.log(foodId);
     return this.http.put(`/api/order/foodstatus?id=${orderId}`,
       {
         uid: foodId,
@@ -41,5 +42,11 @@ export class OrderHttpService {
       }).map(data => {
         return data['data'].order as IOrder;
       });
+  }
+
+  addMoreFood(orderId: string, foods) {
+    return this.http.put(`/api/order/addfood?id=${orderId}`, { foods: foods }).map(data => {
+      return data['data'].order as IOrder;
+    });
   }
 }

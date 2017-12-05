@@ -11,7 +11,7 @@ import { BillGuardService } from './providers/guard-service/bill.guard';
 const routes: Routes = [
     {
         path: '', component: CustomerComponent, children: [
-            {path: 'order', component: OrderComponent, canActivate: [OrderGuardService]},
+            {path: 'order/:id', component: OrderComponent, canActivate: [OrderGuardService]},
             {path: 'bill', component: BillComponent, canActivate: [BillGuardService]},
             {path: 'welcome', component: WelcomeComponent},
             {path: '', redirectTo: 'welcome', pathMatch: 'full'}
@@ -21,7 +21,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+    exports: [RouterModule]
 })
 export class CustomerRoutingModule { }
 

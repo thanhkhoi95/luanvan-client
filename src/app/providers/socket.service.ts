@@ -33,6 +33,7 @@ export class SocketService {
         });
     }
     onUpdateOrder() {
+        console.log('this');
         this.socket.on('order:update', (order: IOrder) => {
             console.log('order:update', order);
             this.orderState.onUpdateOrder(order);
@@ -41,6 +42,7 @@ export class SocketService {
         });
     }
     updateOrder(order: IOrder) {
+        console.log(order);
         this.socket.emit('order:update', order);
     }
 

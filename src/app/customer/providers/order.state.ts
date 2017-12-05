@@ -29,6 +29,15 @@ export class OrderState {
     });
   }
 
+  addMoreFood(order: string, foods) {
+    return this.orderHttpService.addMoreFood(order, foods).map(o => {
+      this.localStorage.set('order', o);
+      console.log(o);
+      this._order.next(o);
+      return o;
+    });
+  }
+
   onUpdateOrder(order: IOrder) {
     this._order.next(order);
     this.localStorage.set('order', order);

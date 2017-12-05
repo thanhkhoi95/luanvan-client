@@ -49,4 +49,8 @@ export class BillComponent implements OnInit {
       this.router.navigate(['welcome']);
     });
   }
+
+  orderMore() {
+    this.router.navigate(['order', this.order.id]);
+  }
 }

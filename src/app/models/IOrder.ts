@@ -6,7 +6,9 @@ export interface IOrder {
     foods?: {
         food?: IFood,
         quantity?: number,
-        price?: number
+        price?: number,
+        uid?: string,
+        status?: string
     }[];
     table?: ITable;
     date?: Date;

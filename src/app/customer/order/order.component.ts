@@ -1,5 +1,5 @@
 import { TableState } from './../providers/table.state';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FoodState } from './../providers/food.state';
 import { IFood } from './../../models/IFood';
 import { Component, OnInit } from '@angular/core';
@@ -16,9 +16,14 @@ import { ITable } from '../../models/ITable';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  private isNew: boolean;
+  private orderId: string;
+
   foods: IFood[] = [];
   foodByCategories: any[] = [];
+
   constructor(private foodState: FoodState,
+    private route: ActivatedRoute,
     private orderState: OrderState,
     private localStorage: LocalStorageService,
     private router: Router,
@@ -34,6 +39,18 @@ export class OrderComponent implements OnInit {
         };
       }).value();
     });
+
+    this.route.params.subscribe(params => {
+      const id = params.id;
+      if (id === 'new') {
+        this.isNew = true;
+        this.orderId = '';
+      } else {
+        this.isNew = false;
+        this.orderId = id;
+      }
+    });
+
     this.foodState.loadFoods();
   }
 
@@ -79,6 +96,25 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  onAddFood() {
+    if (this.foods.length === 0) {
+      alert('Please select food !');
+      return;
+    }
+
+    const foods = this.foods.map(f => {
+      return {
+        food: f.id,
+        quantity: f.quantity
+      };
+    });
+
+    this.orderState.addMoreFood(this.orderId, foods).subscribe(data => {
+      this.socketService.updateOrder(data as IOrder);
+      this.router.navigate(['bill']);
+    });
+  }
+
   leave() {
     const table = this.localStorage.get('table') as ITable;
     this.tableState.updateStatusTable(table._id, 'available').subscribe(t => {
@@ -86,5 +122,9 @@ export class OrderComponent implements OnInit {
       this.socketService.updateTable(t);
       this.router.navigate(['welcome']);
     });
+  }
+
+  back() {
+    this.router.navigate(['bill']);
   }
 }

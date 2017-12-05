@@ -20,6 +20,7 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.orderState.order.subscribe(order => {
       this.order = order;
+      console.log(this.order);
     });
     this.route.params.subscribe(params => {
       const id = params.id;
@@ -29,7 +30,7 @@ export class OrdersComponent implements OnInit {
 
   onCheck(food: IFood, uid: string , event: MatCheckboxChange) {
     this.order.foods.map(f => {
-      if (f.food._id === food._id) {
+      if (f.uid === uid) {
         if (event.checked) {
           (f as any)['status'] = 'ready to delivery';
           this.orderState.updateStatusFood(this.order.id, uid, 'ready to delivery');
@@ -40,7 +41,6 @@ export class OrdersComponent implements OnInit {
       }
       return f;
     });
-
     this.socketService.updateOrder(this.order);
   }
 

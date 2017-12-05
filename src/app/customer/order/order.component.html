@@ -23,10 +23,16 @@
   </perfect-scrollbar>
 </div>
 <div class="foolter">
-  <button class="btn btn-order" (click)="onOrder()">
+  <button *ngIf='isNew' class="btn btn-order" (click)="onOrder()">
     Order Now
   </button>
-  <button style="margin-left: 8px;" class="btn btn-order" (click)="leave()">
+  <button *ngIf='isNew' style="margin-left: 8px;" class="btn btn-order" (click)="leave()">
     Leave
+  </button>
+  <button *ngIf='!isNew' class="btn btn-order" (click)="onAddFood()">
+    Order More
+  </button>
+  <button *ngIf='!isNew' style="margin-left: 8px;" class="btn btn-order" (click)="back()">
+    Back To Bill
   </button>
 </div>

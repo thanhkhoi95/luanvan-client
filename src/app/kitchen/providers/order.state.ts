@@ -27,6 +27,7 @@ export class OrderState {
 
     updateStatusFood(id: string, foodId: string, status: string) {
         this.orderHttpService.updateStatusFood(id, foodId, status).subscribe(order => {
+            console.log(order);
             this._order.next(order);
         });
     }

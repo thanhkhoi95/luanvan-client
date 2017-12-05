@@ -1,55 +1,55 @@
 :host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  .bill {
-    height: 80%;
-    width: 720px;
-    background-color: rgb(255, 253, 205);
-    .content {
-      display: flex;
-      flex: 1;
-      h4 {
-        margin: 0;
-        padding-top: 8px;
-      }
-      p {
-        margin: 0;
-        padding-top: 8px;
-      }
-      .text {
-        flex: 3;
-        display: flex;
-        flex-direction: column;
-      }
-      .price {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .quantity {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .subtotal {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-  }
-  .foolter {
     display: flex;
     justify-content: center;
-    .btn {
-      margin-top: 16px;
-      text-align: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    .bill {
+        height: 80%;
+        width: 720px;
+        background-color: rgb(255, 253, 205);
+        .content {
+            display: flex;
+            flex: 1;
+            h4 {
+                margin: 0;
+                padding-top: 8px;
+            }
+            p {
+                margin: 0;
+                padding-top: 8px;
+            }
+            .text {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+            }
+            .price {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .quantity {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .subtotal {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
     }
-  }
+    .foolter {
+        display: flex;
+        justify-content: center;
+        .btn {
+            margin-top: 16px;
+            text-align: center;
+        }
+    }
 }

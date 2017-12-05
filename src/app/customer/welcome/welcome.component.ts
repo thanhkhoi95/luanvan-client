@@ -33,7 +33,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
       this.socketService.init(res.token, () => {
         this.socketService.updateTable(res.table);
       });
-      this.router.navigate(['order']);
+      this.router.navigate(['order/new']);
     });
   }
 }
