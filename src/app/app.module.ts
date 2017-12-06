@@ -15,18 +15,25 @@ import { TableHttpService } from './providers/table-http.service';
 import { OrderHttpService } from './providers/order-http.service';
 import { AuthService } from './providers/auth.service';
 import { SocketService } from './providers/socket.service';
+import { LoginComponent } from './login/login.component';
+import { AuthState } from './providers/auth.state';
+import { FormsModule } from '@angular/forms';
+import { StaffModule } from './staff/staff.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CustomerModule,
     KitchenModule,
+    StaffModule,
     AppRoutingModule,
+    FormsModule,
     LocalStorageModule.withConfig({
       prefix: 'res',
       storageType: 'localStorage'
@@ -40,7 +47,8 @@ import { SocketService } from './providers/socket.service';
     OrderHttpService,
     FoodHttpService,
     SocketService,
-    AuthService
+    AuthService,
+    AuthState
   ],
   bootstrap: [AppComponent]
 })

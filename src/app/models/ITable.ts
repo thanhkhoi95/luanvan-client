@@ -7,4 +7,5 @@ export interface ITable {
     status?: string;
     newOrder?: string;
     orderId?: string;
+    support?: boolean;
 }

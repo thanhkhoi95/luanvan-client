@@ -1,0 +1,48 @@
+<div class="header" *ngIf="order.table || order.status">
+    <h3>{{order.table.name}}</h3>
+    <p>{{order.status}}</p>
+  </div>
+
+<div class="bill">
+  <perfect-scrollbar style="flex: 1">
+    <mat-list *ngIf="order">
+      <mat-list-item>
+        <div class="content">
+          <div class="text">
+            <h4 mat-line>Food</h4>
+          </div>
+          <div class="price">
+            <p mat-line>Status</p>
+          </div>
+          <div class="quantity">
+            <h4 mat-line>Quantity</h4>
+          </div>
+          <div class="subtotal">
+            <h4 mat-line>Done</h4>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-list-item *ngFor="let item of order.foods">
+        <div class="content">
+          <div class="text">
+            <h4 mat-line>{{item.food.name}}</h4>
+            <p mat-line> {{item.food.description}} </p>
+          </div>
+          <div class="price">
+            <p mat-line> {{item.status}}</p>
+          </div>
+          <div class="quantity">
+            <p mat-line> {{item.quantity}}</p>
+          </div>
+          <div class="subtotal">
+            <mat-checkbox [checked]="item.status !=='ordered'" (change)="onCheck(item.food, item.uid , $event)"></mat-checkbox>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </perfect-scrollbar>
+</div>
+<div class="foolter">
+  <button class="btn" [routerLink]="['/kitchen','tables']">Back To Tables</button>
+</div>

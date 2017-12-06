@@ -1,5 +1,5 @@
-import { KitchenGuardService } from './providers/kitchen.guard';
-import { KitchenComponent } from './kitchen.component';
+import { StaffGuardService } from './providers/staff.guard';
+import { StaffComponent } from './staff.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrdersComponent } from './orders/orders.component';
@@ -7,8 +7,8 @@ import { TablesComponent } from './tables/tables.component';
 
 const routes: Routes = [
     {
-        path: 'kitchen', component: KitchenComponent,
-        canActivate: [KitchenGuardService], children: [
+        path: 'staff', component: StaffComponent,
+        canActivate: [StaffGuardService], children: [
             { path: 'tables', component: TablesComponent },
             { path: 'order/:id', component: OrdersComponent },
             { path: '', redirectTo: 'tables', pathMatch: 'full' }
@@ -18,8 +18,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+    exports: [RouterModule]
 })
-export class KitchenRoutingModule { }
+export class StaffRoutingModule { }
 
-export const routedComponents = [KitchenComponent];
+export const routedComponents = [StaffComponent];

@@ -1,20 +1,26 @@
-import { OrderState as OrderState2 } from './../kitchen/providers/order.state';
+import { OrderState as OrderStateKitchen } from './../kitchen/providers/order.state';
+import { OrderState as OrderStateStaff } from './../staff/providers/order.state';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
-import { OrderState } from '../customer/providers/order.state';
+import { OrderState as OrderStateCustomer } from '../customer/providers/order.state';
 import { IOrder } from '../models/IOrder';
 import { ITable } from '../models/ITable';
-import { TableState } from '../kitchen/providers/table.state';
+import { TableState as TableStateKitchen } from '../kitchen/providers/table.state';
+import { TableState as TableStateStaff } from '../staff/providers/table.state';
 
 @Injectable()
 export class SocketService {
     private url = environment.apiUrl;
     private socket;
-    constructor(private orderState: OrderState, private tableStateKitchen: TableState, private orderStateKitchen: OrderState2) {
-    }
+    constructor(private orderStateCustomer: OrderStateCustomer,
+        private tableStateKitchen: TableStateKitchen,
+        private orderStateKitchen: OrderStateKitchen,
+        private orderStateStaff: OrderStateStaff,
+        private tableStateStaff: TableStateStaff) { }
+
     init(token, callback) {
         this.socket = io(this.url, { query: `token=${token}` });
         this.socket.open();
@@ -36,9 +42,11 @@ export class SocketService {
         console.log('this');
         this.socket.on('order:update', (order: IOrder) => {
             console.log('order:update', order);
-            this.orderState.onUpdateOrder(order);
+            this.orderStateCustomer.onUpdateOrder(order);
             this.orderStateKitchen.updateOrder(order);
+            this.orderStateStaff.updateOrder(order);
             this.tableStateKitchen.onUpdateNewOrderTable(order.table, order.id);
+            this.tableStateStaff.onUpdateNewOrderTable(order.table, order.id);
         });
     }
     updateOrder(order: IOrder) {
@@ -50,8 +58,10 @@ export class SocketService {
         this.socket.on('table:update', (table: ITable) => {
             console.log('table:update', table);
             this.tableStateKitchen.onUpdateTable(table);
+            this.tableStateStaff.onUpdateTable(table);
         });
     }
+
     updateTable(table: ITable) {
         this.socket.emit('table:update', table);
     }
@@ -60,7 +70,9 @@ export class SocketService {
         this.socket.on('order:checkout', (order: IOrder) => {
             console.log('order:checkout', order);
             this.orderStateKitchen.updateOrder(order);
+            this.orderStateStaff.updateOrder(order);
             this.tableStateKitchen.onUpdateTable(order.table);
+            this.tableStateStaff.onUpdateTable(order.table);
         });
     }
 
