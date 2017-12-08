@@ -16,6 +16,18 @@ export class TableState {
 
     getTables() {
         this.tableHttpService.getTables().subscribe(tables => {
+            const oldTables = this._tables.getValue();
+            if (oldTables && oldTables.length > 0) {
+                tables = tables.map(t => {
+                    for (let i = 0; i < oldTables.length; i++) {
+                        if (oldTables[i].id === t.id) {
+                            t.support = oldTables[i].support;
+                            t.newOrder = oldTables[i].newOrder;
+                            return t;
+                        }
+                    }
+                });
+            }
             this._tables.next(tables);
         });
     }
@@ -39,6 +51,18 @@ export class TableState {
             if (t.id === table.id) {
                 t.newOrder = 'New Order';
                 t.orderId = orderId;
+            }
+            return t;
+        });
+        this._tables.next(tables);
+    }
+
+    onTableSupport(table: ITable) {
+        table.id = table._id;
+        let tables = this._tables.getValue();
+        tables = tables.map(t => {
+            if (t.id === table.id) {
+                t.support = table.support;
             }
             return t;
         });

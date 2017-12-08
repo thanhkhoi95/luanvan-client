@@ -36,6 +36,7 @@ export class SocketService {
             this.onUpdateTable();
             this.onUpdateOrder();
             this.onOrderCheckOut();
+            this.onTableSupport();
         });
     }
     onUpdateOrder() {
@@ -78,5 +79,16 @@ export class SocketService {
 
     orderCheckout(order: IOrder) {
         this.socket.emit('order:checkout', order);
+    }
+
+    onTableSupport() {
+        this.socket.on('table:support', (table: ITable) => {
+            console.log('table:support', table);
+            this.tableStateStaff.onTableSupport(table);
+        });
+    }
+
+    tableSupport(table: ITable) {
+        this.socket.emit('table:support', table);
     }
 }

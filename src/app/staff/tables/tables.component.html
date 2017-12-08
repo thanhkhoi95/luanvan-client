@@ -9,6 +9,7 @@
       <h4 [ngClass]="{'available': table.status === 'available'}">
         <i class="fa fa-circle"></i> {{table.name}} </h4>
       <h5>{{table.newOrder}}</h5>
+      <h5 *ngIf='table.support'>Need supporting</h5>
     </div>
   </div>
 </div>

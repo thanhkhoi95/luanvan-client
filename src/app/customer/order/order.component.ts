@@ -127,4 +127,10 @@ export class OrderComponent implements OnInit {
   back() {
     this.router.navigate(['bill']);
   }
+
+  onSupport() {
+    const table = this.localStorage.get('table') as ITable;
+    table.support = true;
+    this.socketService.tableSupport(table);
+  }
 }

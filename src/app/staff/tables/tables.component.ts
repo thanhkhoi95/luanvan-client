@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TableState } from '../providers/table.state';
 import { ITable } from '../../models/ITable';
 import { Router } from '@angular/router';
+import { SocketService } from '../../providers/socket.service';
 
 @Component({
   selector: 'app-tables',
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 export class TablesComponent implements OnInit {
 
   tables: ITable[] = [];
-  constructor(private tableState: TableState, private router: Router) { }
+  constructor(private tableState: TableState,
+    private router: Router,
+    private socketService: SocketService) { }
 
   ngOnInit() {
     this.tableState.tables.subscribe(tables => {
@@ -22,7 +25,11 @@ export class TablesComponent implements OnInit {
   }
   viewOrder(table: ITable) {
     if (table.id && table.status === 'serving') {
-      this.router.navigate(['kitchen', 'order', table.id]);
+      this.router.navigate(['staff', 'order', table.id]);
+      if (table.support) {
+        table.support = false;
+        this.socketService.tableSupport(table);
+      }
     }
   }
 

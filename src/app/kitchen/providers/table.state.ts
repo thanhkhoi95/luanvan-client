@@ -16,6 +16,17 @@ export class TableState {
 
     getTables() {
         this.tableHttpService.getTables().subscribe(tables => {
+            const oldTables = this._tables.getValue();
+            if (oldTables && oldTables.length > 0) {
+                tables = tables.map(t => {
+                    for (let i = 0; i < oldTables.length; i++) {
+                        if (oldTables[i].id === t.id) {
+                            t.newOrder = oldTables[i].newOrder;
+                            return t;
+                        }
+                    }
+                });
+            }
             this._tables.next(tables);
         });
     }
