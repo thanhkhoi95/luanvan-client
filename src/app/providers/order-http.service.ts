@@ -49,4 +49,13 @@ export class OrderHttpService {
       return data['data'].order as IOrder;
     });
   }
+
+  onlineCheckout(id: string) {
+    this.http.get(`/api/order/onlinecheckout?id=${id}`).subscribe(
+      (response) => {
+        console.log(response);
+        document.location.replace(<string>response['url']);
+      }
+    );
+  }
 }

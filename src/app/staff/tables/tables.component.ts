@@ -23,14 +23,16 @@ export class TablesComponent implements OnInit {
     });
     this.tableState.getTables();
   }
-  viewBill(table: ITable) {
+  viewTable(table: ITable) {
     if (table.id && table.status === 'serving') {
       console.log('dis me');
       this.router.navigate(['staff', 'table', table.id]);
       table.newOrder = '';
       if (table.support) {
         table.support = false;
+        table.checkout = false;
         this.socketService.tableSupport(table);
+        this.socketService.tableCheckout(table);
       }
     }
     console.log(this.tables);

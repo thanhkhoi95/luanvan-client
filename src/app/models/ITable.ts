@@ -8,4 +8,5 @@ export interface ITable {
     newOrder?: string;
     orderId?: string;
     support?: boolean;
+    checkout?: boolean;
 }

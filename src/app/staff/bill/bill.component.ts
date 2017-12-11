@@ -63,16 +63,23 @@ export class BillComponent implements OnInit {
     this.isShow = flag;
   }
 
+  back() {
+    this.router.navigate(['staff', 'table', this.order.table.id]);
+  }
+
   confirmCheckout() {
     const username = this.authInfo.staff.username;
-    console.log(username);
-    console.log(this.password);
     this.authService.login(username, this.password).subscribe((token) => {
-
+      this.orderState.checkOutOrder(this.order.id).subscribe(order => {
+        this.socketService.orderCheckout(order);
+        this.isShow = false;
+        this.router.navigate(['staff', 'tables']);
+      });
     });
-    // this.orderState.checkOutOrder(this.order.id).subscribe(order => {
-    //   this.socketService.orderCheckout(order);
-    // });
+  }
+
+  onlineCheckout() {
+    this.orderState.onlineCheckout(this.order.table.id);
   }
 
 }

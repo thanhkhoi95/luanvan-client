@@ -68,4 +68,16 @@ export class TableState {
         });
         this._tables.next(tables);
     }
+
+    onTableCheckout(table: ITable) {
+        table.id = table._id;
+        let tables = this._tables.getValue();
+        tables = tables.map(t => {
+            if (t.id === table.id) {
+                t.checkout = table.checkout;
+            }
+            return t;
+        });
+        this._tables.next(tables);
+    }
 }

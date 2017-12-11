@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { IOrder, IOrderPost } from '../../models/IOrder';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OrderHttpService } from '../../providers/order-http.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class OrderState {
@@ -13,6 +14,7 @@ export class OrderState {
     return this._order.asObservable();
   }
   constructor(private orderHttpService: OrderHttpService,
+    private router: Router,
     private localStorage: LocalStorageService) { }
 
   init() {
@@ -41,6 +43,17 @@ export class OrderState {
   onUpdateOrder(order: IOrder) {
     this._order.next(order);
     this.localStorage.set('order', order);
+  }
+
+  onOrderCheckout(cTable) {
+    console.log('ctable', cTable);
+    const table = this.localStorage.get('table');
+    console.log(table);
+    if (table) {
+      if (table['_id'] === cTable._id) {
+        this.router.navigate(['welcome']);
+      }
+    }
   }
 
   // checkOutOrder(id: string): Observable<IOrder> {

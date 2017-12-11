@@ -18,7 +18,6 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     private localStorage: LocalStorageService,
     private socketService: SocketService) { }
   ngOnInit() {
-    this.localStorage.clearAll();
   }
 
   ngAfterViewInit() {
@@ -28,9 +27,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   onEnter(tableName: string) {
     this.localStorage.clearAll();
     this.tableState.login(tableName).subscribe((res: any) => {
-      console.log(res);
       res.table._id = res.table.id;
-      console.log(res.table);
       this.socketService.init(res.token, () => {
         this.socketService.updateTable(res.table);
       });

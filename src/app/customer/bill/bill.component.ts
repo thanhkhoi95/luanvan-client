@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { IOrder } from '../../models/IOrder';
 import { OrderState } from '../providers/order.state';
 import { TableState } from '../providers/table.state';
+import { ITable } from '../../models/ITable';
 
 @Component({
   selector: 'app-bill',
@@ -43,11 +44,9 @@ export class BillComponent implements OnInit {
   }
 
   checkOut() {
-    this.orderState.checkOutOrder(this.order.id).subscribe(order => {
-      this.socketService.orderCheckout(order);
-      this.localStorage.clearAll();
-      this.router.navigate(['welcome']);
-    });
+    const table = this.localStorage.get('table') as ITable;
+    table.checkout = true;
+    this.socketService.tableCheckout(table);
   }
 
   orderMore() {

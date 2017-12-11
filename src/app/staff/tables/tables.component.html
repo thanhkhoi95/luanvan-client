@@ -2,7 +2,7 @@
   <button class="btn" (click)="logout()">Logout</button>
 </div>
 <div class="table-board" *ngIf="tables.length">
-  <div class="table-card" *ngFor="let table of tables" (click)="viewBill(table)">
+  <div class="table-card" *ngFor="let table of tables" (click)="viewTable(table)">
     <img *ngIf="table.status === 'available'" src="assets/dinner-inactive.png" alt="" />
     <img *ngIf="table.status !== 'available'" src="assets/dinner-active.png" alt="" />
     <div class="detail">
@@ -10,6 +10,7 @@
         <i class="fa fa-circle"></i> {{table.name}} </h4>
       <h5>{{table.newOrder}}</h5>
       <h5 *ngIf='table.support'>Need supporting</h5>
+      <h5 *ngIf='table.checkout'>Waiting for checkout</h5>
     </div>
   </div>
 </div>
