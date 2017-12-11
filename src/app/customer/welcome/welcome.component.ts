@@ -26,6 +26,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
   }
 
   onEnter(tableName: string) {
+    this.localStorage.clearAll();
     this.tableState.login(tableName).subscribe((res: any) => {
       console.log(res);
       res.table._id = res.table.id;

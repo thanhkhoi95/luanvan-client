@@ -8,7 +8,7 @@ import { OrderHttpService } from '../../providers/order-http.service';
 @Injectable()
 export class OrderState {
 
-  private _order: BehaviorSubject<IOrder> = new BehaviorSubject({});
+  private _order: BehaviorSubject<IOrder> = new BehaviorSubject(null);
   get order() {
     return this._order.asObservable();
   }
@@ -43,7 +43,7 @@ export class OrderState {
     this.localStorage.set('order', order);
   }
 
-  checkOutOrder(id: string): Observable<IOrder> {
-    return this.orderHttpService.updateStatusOrder(id, 'checked out');
-  }
+  // checkOutOrder(id: string): Observable<IOrder> {
+  //   return this.orderHttpService.updateStatusOrder(id, 'checked out');
+  // }
 }

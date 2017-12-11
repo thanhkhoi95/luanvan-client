@@ -1,9 +1,13 @@
-<div class="header" *ngIf="order.table || order.status">
-    <h3>{{order.table.name}}</h3>
-    <p>{{order.status}}</p>
-  </div>
+<div class="header" *ngIf="order">
+  <h3>{{order.table.name}}</h3>
+  <p>{{order.status}}</p>
+</div>
 
-<div class="bill">
+<div class="header" *ngIf="!order">
+  <h3>Not order yet!</h3>
+</div>
+
+<div *ngIf="order" class="bill">
   <perfect-scrollbar style="flex: 1">
     <mat-list *ngIf="order">
       <mat-list-item>
@@ -18,7 +22,7 @@
             <h4 mat-line>Quantity</h4>
           </div>
           <div class="subtotal">
-            <h4 mat-line>Done</h4>
+            <h4 mat-line>Delivered</h4>
           </div>
         </div>
       </mat-list-item>
@@ -30,12 +34,13 @@
           </div>
           <div class="price">
             <p mat-line> {{item.status}}</p>
+            <p *ngIf='item.status === "done"' mat-line> ({{item.kitchen.name}})</p>
           </div>
           <div class="quantity">
             <p mat-line> {{item.quantity}}</p>
           </div>
           <div class="subtotal">
-            <mat-checkbox [checked]="item.status !=='ordered'" (change)="onCheck(item.food, item.uid , $event)"></mat-checkbox>
+            <mat-checkbox [disabled]='isDisable(item)' [checked]="item.status ==='delivered'" (change)="onCheck(item.food, item.uid , $event)"></mat-checkbox>
           </div>
         </div>
       </mat-list-item>
@@ -44,5 +49,11 @@
   </perfect-scrollbar>
 </div>
 <div class="foolter">
+  <button style="margin-left: 8px;" class="btn btn-order" (click)="viewFoodMenu()">
+    Food Menu
+  </button>
+  <button *ngIf='order !== null' style="margin-left: 8px;" class="btn btn-order" (click)="viewBill()">
+      Bill
+    </button>
   <button class="btn" [routerLink]="['/staff','tables']">Back To Tables</button>
 </div>

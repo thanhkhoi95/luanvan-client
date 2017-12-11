@@ -23,14 +23,8 @@
   </perfect-scrollbar>
 </div>
 <div class="foolter">
-  <button class="btn btn-order" (click)="onSupport()">
-    Call For Support
-  </button>
   <button *ngIf='isNew' style="margin-left: 8px;" class="btn btn-order" (click)="onOrder()">
     Order Now
-  </button>
-  <button *ngIf='isNew' style="margin-left: 8px;" class="btn btn-order" (click)="leave()">
-    Leave
   </button>
   <button *ngIf='!isNew' style="margin-left: 8px;" class="btn btn-order" (click)="onAddFood()">
     Order More

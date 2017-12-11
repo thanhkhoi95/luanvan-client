@@ -17,6 +17,7 @@ import { ITable } from '../../models/ITable';
 })
 export class OrderComponent implements OnInit {
   private isNew: boolean;
+  private tableId: string;
   private orderId: string;
 
   foods: IFood[] = [];
@@ -33,6 +34,7 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.foodState.foods.subscribe(foods => {
       this.foodByCategories = chain(foods).groupBy('categories[0].id').map((f: any) => {
+        console.log(foods);
         return {
           foods: f as IFood[],
           category: f[0].categories[0].name as string
@@ -41,13 +43,14 @@ export class OrderComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      const id = params.id;
-      if (id === 'new') {
+      const orderId = params.orderId;
+      this.tableId = params.tableId;
+      if (orderId === 'new') {
         this.isNew = true;
         this.orderId = '';
       } else {
         this.isNew = false;
-        this.orderId = id;
+        this.orderId = orderId;
       }
     });
 
@@ -79,7 +82,6 @@ export class OrderComponent implements OnInit {
       alert('Please select food !');
       return;
     }
-    const tableId = this.localStorage.get('table')['_id'];
     const foods = this.foods.map(f => {
       return {
         food: f.id,
@@ -88,12 +90,12 @@ export class OrderComponent implements OnInit {
     });
     const orderPost: IOrderPost = {
       foods: foods,
-      table: tableId
+      table: this.tableId
     };
     this.orderState.createOrder(orderPost).subscribe(data => {
       data['newOrder'] = 'New order';
       this.socketService.updateOrder(data as IOrder);
-      this.router.navigate(['bill']);
+      this.router.navigate(['staff', 'table', this.tableId]);
     });
   }
 
@@ -113,26 +115,11 @@ export class OrderComponent implements OnInit {
     this.orderState.addMoreFood(this.orderId, foods).subscribe(data => {
       data['newOrder'] = 'New order';
       this.socketService.updateOrder(data as IOrder);
-      this.router.navigate(['bill']);
-    });
-  }
-
-  leave() {
-    const table = this.localStorage.get('table') as ITable;
-    this.tableState.updateStatusTable(table._id, 'available').subscribe(t => {
-      t._id = t.id;
-      this.socketService.updateTable(t);
-      this.router.navigate(['welcome']);
+      this.router.navigate(['staff', 'table', this.tableId]);
     });
   }
 
   back() {
-    this.router.navigate(['bill']);
-  }
-
-  onSupport() {
-    const table = this.localStorage.get('table') as ITable;
-    table.support = true;
-    this.socketService.tableSupport(table);
+    this.router.navigate(['staff', 'table', this.tableId]);
   }
 }

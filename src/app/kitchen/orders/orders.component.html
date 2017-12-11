@@ -1,9 +1,13 @@
-<div class="header" *ngIf="order.table || order.status">
-    <h3>{{order.table.name}}</h3>
-    <p>{{order.status}}</p>
-  </div>
+<div class="header" *ngIf="order">
+  <h3>{{order.table.name}}</h3>
+  <p>{{order.status}}</p>
+</div>
 
-<div class="bill">
+<div class="header" *ngIf="!order">
+  <h3>Not order yet!</h3>
+</div>
+
+<div *ngIf="order" class="bill">
   <perfect-scrollbar style="flex: 1">
     <mat-list *ngIf="order">
       <mat-list-item>
@@ -18,6 +22,9 @@
             <h4 mat-line>Quantity</h4>
           </div>
           <div class="subtotal">
+            <h4 mat-line>Cocking</h4>
+          </div>
+          <div class="subtotal">
             <h4 mat-line>Done</h4>
           </div>
         </div>
@@ -30,12 +37,16 @@
           </div>
           <div class="price">
             <p mat-line> {{item.status}}</p>
+            <p *ngIf="item.status !== 'delivered' && item.status !== 'ordered'" mat-line> ({{item.kitchen.name}})</p>
           </div>
           <div class="quantity">
             <p mat-line> {{item.quantity}}</p>
           </div>
           <div class="subtotal">
-            <mat-checkbox [checked]="item.status !=='ordered'" (change)="onCheck(item.food, item.uid , $event)"></mat-checkbox>
+            <mat-checkbox [disabled]='isDisable(item)' [checked]="item.status === 'cocking'" (change)="onCockingCheck(item.food, item.uid, $event)"></mat-checkbox>
+          </div>
+          <div class="subtotal">
+            <mat-checkbox [disabled]='isDisable(item)' [checked]="item.status ==='done'" (change)="onDoneCheck(item.food, item.uid, $event)"></mat-checkbox>
           </div>
         </div>
       </mat-list-item>

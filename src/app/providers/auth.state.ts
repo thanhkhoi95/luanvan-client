@@ -14,6 +14,14 @@ export class AuthState {
     }
 
     private jwtHelper: JwtHelper = new JwtHelper();
+
+    getAuthInfo() {
+        const token = this.localStorage.get('token');
+        const user = this.jwtHelper.decodeToken(token as string);
+        this.localStorage.set('user', user);
+        this._auth.next({ user: user });
+    }
+
     constructor(private authService: AuthService,
         private localStorage: LocalStorageService) {
     }

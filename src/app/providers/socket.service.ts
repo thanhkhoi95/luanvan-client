@@ -40,14 +40,13 @@ export class SocketService {
         });
     }
     onUpdateOrder() {
-        console.log('this');
         this.socket.on('order:update', (order: IOrder) => {
             console.log('order:update', order);
             this.orderStateCustomer.onUpdateOrder(order);
             this.orderStateKitchen.updateOrder(order);
             this.orderStateStaff.updateOrder(order);
-            this.tableStateKitchen.onUpdateNewOrderTable(order.table, order.id);
-            this.tableStateStaff.onUpdateNewOrderTable(order.table, order.id);
+            this.tableStateKitchen.onUpdateNewOrderTable(order.table, order.id, order['newOrder']);
+            this.tableStateStaff.onUpdateNewOrderTable(order.table, order.id, order['newOrder']);
         });
     }
     updateOrder(order: IOrder) {
@@ -70,8 +69,8 @@ export class SocketService {
     onOrderCheckOut() {
         this.socket.on('order:checkout', (order: IOrder) => {
             console.log('order:checkout', order);
-            this.orderStateKitchen.updateOrder(order);
-            this.orderStateStaff.updateOrder(order);
+            this.orderStateKitchen.updateOrder(null);
+            this.orderStateStaff.updateOrder(null);
             this.tableStateKitchen.onUpdateTable(order.table);
             this.tableStateStaff.onUpdateTable(order.table);
         });

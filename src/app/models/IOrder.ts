@@ -8,7 +8,9 @@ export interface IOrder {
         quantity?: number,
         price?: number,
         uid?: string,
-        status?: string
+        status?: string,
+        kitchen?: string,
+        staff?: string
     }[];
     table?: ITable;
     date?: Date;

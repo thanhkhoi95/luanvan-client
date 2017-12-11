@@ -22,6 +22,7 @@ export class TablesComponent implements OnInit {
   }
   viewOrder(table: ITable) {
     if (table.id && table.status === 'serving') {
+      table.newOrder = '';
       this.router.navigate(['kitchen', 'order', table.id]);
     }
   }

@@ -43,12 +43,12 @@ export class TableState {
         this._tables.next(tables);
     }
 
-    onUpdateNewOrderTable(table: ITable, orderId: string) {
+    onUpdateNewOrderTable(table: ITable, orderId: string, newOrder: string) {
         table.id = table._id;
         let tables = this._tables.getValue();
         tables = tables.map(t => {
             if (t.id === table.id) {
-                t.newOrder = 'New Order';
+                t.newOrder = newOrder;
                 t.orderId = orderId;
             }
             return t;

@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { IOrder } from '../../models/IOrder';
+import { IOrder, IOrderPost } from '../../models/IOrder';
 @Injectable()
 export class OrderState {
-    private _order: BehaviorSubject<IOrder> = new BehaviorSubject({});
+    private _order: BehaviorSubject<IOrder> = new BehaviorSubject(null);
     get order() {
         return this._order.asObservable();
     }
@@ -36,4 +36,25 @@ export class OrderState {
         this._order.next(order);
     }
 
+    createOrder(order: IOrderPost) {
+        return this.orderHttpService.createOrder(order).map(o => {
+            this.localStorage.set('order', o);
+            console.log(o);
+            this._order.next(o);
+            return o;
+        });
+    }
+
+    addMoreFood(order: string, foods) {
+        return this.orderHttpService.addMoreFood(order, foods).map(o => {
+            this.localStorage.set('order', o);
+            console.log(o);
+            this._order.next(o);
+            return o;
+        });
+    }
+
+    checkOutOrder(id: string): Observable<IOrder> {
+        return this.orderHttpService.updateStatusOrder(id, 'checked out');
+    }
 }

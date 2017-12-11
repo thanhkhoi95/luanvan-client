@@ -6,7 +6,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { IOrder } from '../../models/IOrder';
 @Injectable()
 export class OrderState {
-    private _order: BehaviorSubject<IOrder> = new BehaviorSubject({});
+    private _order: BehaviorSubject<IOrder> = new BehaviorSubject(null);
     get order() {
         return this._order.asObservable();
     }
