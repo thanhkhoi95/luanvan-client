@@ -1,12 +1,11 @@
-<div class="bg">
-  <img class="cover" src="assets/welcome-bg.jpg" alt="">
-</div>
 <div class="pick-table">
-  <h1>My Kitchen</h1>
-
-  <div class="form">
-    <input #input type="text" [(ngModel)]="username" placeholder="Username">
-    <input #input2 type="password" [(ngModel)]="password" placeholder="Password">
-    <button class="btn" (click)="onEnter(username, password)" (keyup.enter)="onEnter(username, password)">Login</button>
+  <div class="contains">
+    <h1>My Restaurant</h1>
+    <div class="divider"></div>
+    <div class="form">
+      <input #input type="text" [(ngModel)]="username" placeholder="Username">
+      <input #input2 type="password" [(ngModel)]="password" placeholder="Password">
+      <button class="btn" (click)="onEnter(username, password)" (keyup.enter)="onEnter(username, password)">Login</button>
+    </div>
   </div>
 </div>

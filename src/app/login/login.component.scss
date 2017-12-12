@@ -1,39 +1,61 @@
+@font-face {
+    font-family: "Antre";
+    src: url("../../assets/fonts/antre.otf?") format("otf");
+}
+
 :host {
     display: flex;
     height: 100vh;
-    .bg {
-      flex: 4;
-      display: flex;
-      .cover {
-        width: 100%;
-        object-fit: cover;
-      }
-      img {
-          height: 100%;
-      }
-    }
+    background-image: url("../../assets/welcome-bg.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     .pick-table {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      h1 {
-          text-align: center;
-      }
-      .form {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          justify-content: center;
-          align-self: center;
-          input {
-              padding: 8px 16px;
-              margin-bottom: 8px;
-          }
-          button {
-              margin-top: 16px;
-              padding: 8px 16px;
-          }
-      }
+        height: 100%;
+        width: 28%;
+        padding: 25px 15px;
+        margin-left: 40px;
+        background-color: rgba(0, 0, 0, 0.7);
+        .contains {
+            text-align: center;
+            h1,
+            h2,
+            p {
+                text-align: center;
+                font-family: "Antre";
+                color: white;
+            }
+            .divider {
+                width: 80%;
+                height: 1px;
+                background-color: white;
+                display: inline-block;
+            }
+            .form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-self: center;
+                margin-top: 80px;
+                input {
+                    color: #fff;
+                    padding: 8px 16px;
+                    margin: 0px 10px;
+                    border: none;
+                    border-bottom: 1px solid white;
+                    font-size: 1em;
+                    font-weight: 200;
+                    background: none;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                button {
+                    padding: 8px 16px;
+                    margin: 16px 10px;
+                }
+            }
+        }
     }
-  }
-  
+}
