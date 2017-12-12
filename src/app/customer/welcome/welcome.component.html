@@ -1,11 +1,12 @@
-<div class="bg">
-  <img class="cover" src="assets/welcome-bg.jpg" alt="">
-</div>
 <div class="pick-table">
-  <h1>My Restaurant</h1>
-
-  <div class="form">
-    <input #input type="text" [(ngModel)]="tableName" placeholder="Table Name">
-    <button class="btn" (click)="onEnter(tableName, $event)" (keyup.enter)="onEnter(tableName, $event)">Order Now</button>
+  <div class="contains">
+    <h1>My Restaurant</h1>
+    <div class="divider"></div>
+    <h2>Welcome!</h2>
+    <p>Discover the best flavour and enjoy your meal</p>
+    <div class="form">
+      <input #input type="text" [(ngModel)]="tableName" placeholder="Table Name">
+      <button class="btn" (click)="onEnter(tableName, $event)" (keyup.enter)="onEnter(tableName, $event)">Order Now</button>
+    </div>
   </div>
 </div>

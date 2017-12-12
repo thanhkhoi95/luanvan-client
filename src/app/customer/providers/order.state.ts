@@ -56,7 +56,8 @@ export class OrderState {
     }
   }
 
-  // checkOutOrder(id: string): Observable<IOrder> {
-  //   return this.orderHttpService.updateStatusOrder(id, 'checked out');
-  // }
+  onlineCheckout(id: string) {
+    this.orderHttpService.onlineCheckout(id);
+  }
+
 }

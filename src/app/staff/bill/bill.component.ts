@@ -60,11 +60,16 @@ export class BillComponent implements OnInit {
   }
 
   toggleModal(flag: boolean) {
+    this.password = '';
     this.isShow = flag;
   }
 
   back() {
-    this.router.navigate(['staff', 'table', this.order.table.id]);
+    if (this.order !== null) {
+      this.router.navigate(['staff', 'table', this.order.table.id]);
+    } else {
+      this.router.navigate(['staff', 'tables']);
+    }
   }
 
   confirmCheckout() {

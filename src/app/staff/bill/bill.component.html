@@ -55,10 +55,10 @@
   </perfect-scrollbar>
 </div>
 <div class="foolter">
-  <button class="btn btn-checkout" (click)='toggleModal(true)'>
+  <button *ngIf='order !== null' class="btn btn-checkout" (click)='toggleModal(true)'>
     Checkout By Cash
   </button>
-  <button class="btn btn-checkout" (click)='onlineCheckout()'>
+  <button *ngIf='order !== null' class="btn btn-checkout" (click)='onlineCheckout()'>
     Online checkout
   </button>
   <button class="btn btn-checkout" style="margin-left: 8px;" (click)="back()">

@@ -49,6 +49,10 @@ export class BillComponent implements OnInit {
     this.socketService.tableCheckout(table);
   }
 
+  onlineCheckout() {
+    this.orderState.onlineCheckout(this.order.table.id);
+  }
+
   orderMore() {
     this.router.navigate(['order', this.order.id]);
   }
