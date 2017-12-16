@@ -21,7 +21,6 @@
         <div class="content">
           <div class="text">
             <h4 mat-line>{{item.food.name}}</h4>
-            <p mat-line> {{item.food.description}} </p>
           </div>
           <div class="price">
             <p mat-line> {{item.food.price}}</p>
@@ -58,10 +57,10 @@
   <button *ngIf='order !== null' class="btn btn-checkout" (click)='toggleModal(true)'>
     Checkout By Cash
   </button>
-  <button *ngIf='order !== null' class="btn btn-checkout" (click)='onlineCheckout()'>
+  <button *ngIf='order !== null' style="margin-left:8px" class="btn btn-checkout" (click)='onlineCheckout()'>
     Online checkout
   </button>
-  <button class="btn btn-checkout" style="margin-left: 8px;" (click)="back()">
+  <button class="btn btn-checkout" style="margin-left:8px" (click)="back()">
     Back
   </button>
 </div>
