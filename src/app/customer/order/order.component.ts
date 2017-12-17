@@ -57,6 +57,8 @@ export class OrderComponent implements OnInit {
   onSelect(food: IFood, option: MatListOptionChange) {
     if (!food.quantity && option.selected) {
       food.quantity = 1;
+    } else if (!option.selected) {
+      food.quantity = null;
     }
     if (option.selected) {
       const exist = this.foods.find(f => {
@@ -93,7 +95,7 @@ export class OrderComponent implements OnInit {
     this.orderState.createOrder(orderPost).subscribe(data => {
       data['newOrder'] = 'New order';
       this.socketService.updateOrder(data as IOrder);
-      this.router.navigate(['bill']);
+      this.router.navigate(['table']);
     });
   }
 
@@ -113,7 +115,7 @@ export class OrderComponent implements OnInit {
     this.orderState.addMoreFood(this.orderId, foods).subscribe(data => {
       data['newOrder'] = 'New order';
       this.socketService.updateOrder(data as IOrder);
-      this.router.navigate(['bill']);
+      this.router.navigate(['table']);
     });
   }
 
@@ -127,7 +129,7 @@ export class OrderComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['bill']);
+    this.router.navigate(['table']);
   }
 
   onSupport() {

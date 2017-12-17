@@ -6,7 +6,13 @@
     flex-direction: column;
     .order {
         height: 80%;
+        @media screen and (max-height: 600px) {
+            height: 65%;
+        }
         width: 720px;
+        @media screen and (max-width: 750px) {
+            width: 90%;
+        }
         background-color: rgb(255, 253, 205);
         .content {
             display: flex;
@@ -28,9 +34,8 @@
                 justify-content: center;
                 align-items: center;
                 input {
-                    width: 60px;
+                    width: 30px;
                     border: 0;
-                    padding: 8px 8px;
                     text-align: center;
                 }
             }

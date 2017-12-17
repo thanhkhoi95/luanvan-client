@@ -5,11 +5,15 @@
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    width: 100%;
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 720px;
+        @media screen and (max-width: 750px) {
+          width: 90%;
+        }
         h4 {
             text-transform: uppercase;
         }
@@ -20,7 +24,13 @@
     }
     .bill {
       height: 80%;
+      @media screen and (max-height: 600px){
+        height: 65%;
+      }
       width: 720px;
+      @media screen and (max-width: 750px) {
+        width: 90%;
+      }
       background-color: rgb(255, 253, 205);
       .content {
         display: flex;
@@ -37,18 +47,29 @@
           flex: 3;
           display: flex;
           flex-direction: column;
+          .mobile-show {
+            @media screen and (min-width: 551px) {
+              display: none;
+            }
+          }
         }
         .price {
           flex: 1;
           display: flex;
           justify-content: center;
           align-items: center;
+          @media screen and (max-width: 550px) {
+            display: none;
+          }
         }
         .quantity {
           flex: 1;
           display: flex;
           justify-content: center;
           align-items: center;
+          @media screen and (max-width: 550px) {
+            display: none;
+          }
         }
         .subtotal {
           flex: 1;

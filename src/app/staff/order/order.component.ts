@@ -60,6 +60,8 @@ export class OrderComponent implements OnInit {
   onSelect(food: IFood, option: MatListOptionChange) {
     if (!food.quantity && option.selected) {
       food.quantity = 1;
+    } else if (!option.selected) {
+      food.quantity = null;
     }
     if (option.selected) {
       const exist = this.foods.find(f => {

@@ -1,28 +1,44 @@
+<div class="header" *ngIf="order">
+  <h3>Table: {{order.table.name}}</h3>
+</div>
 <div class="bill">
   <perfect-scrollbar style="flex: 1">
+    <div class='bill-header' style='text-align: center'>
+      <b>
+        <h2 mat-line>My Restaurent</h2>
+        <p>1234 Trần Hưng Đạo P.1 Q.1, TP. HCM</p>
+        <h3>INVOICE</h3>
+        <br>
+      </b>
+    </div>
     <mat-list *ngIf="order">
+      <mat-list-item>
+        <p><b>DATE:</b> {{order.dateString}}</p>
+      </mat-list-item>
       <mat-list-item>
         <div class="content">
           <div class="text">
-            <h4 mat-line>Food</h4>
+            <b><h4 mat-line>Food</h4></b>
           </div>
-          <div class="price">
+          <div class="price mobile-hidden">
             <h4 mat-line>Price</h4>
           </div>
           <div class="quantity">
-            <h4 mat-line>Quantity</h4>
+            <h4 mat-line>Qty</h4>
           </div>
           <div class="subtotal">
             <h4 mat-line>Sub Total</h4>
           </div>
         </div>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item *ngFor="let item of order.foods">
         <div class="content">
           <div class="text">
             <h4 mat-line>{{item.food.name}}</h4>
+            <p mat-line class='mobile-show'>Price: {{item.food.price}}</p>
           </div>
-          <div class="price">
+          <div class="price mobile-hidden">
             <p mat-line> {{item.food.price}}</p>
           </div>
           <div class="quantity">
@@ -51,6 +67,12 @@
         </div>
       </mat-list-item>
     </mat-list>
+    <div class='bill-header' style='text-align: center'>
+      <b>
+        <br>
+        <p>THANK YOU VERY MUCH!</p>
+      </b>
+    </div>
   </perfect-scrollbar>
 </div>
 <div class="foolter">

@@ -8,6 +8,7 @@ import { OrderState } from '../providers/order.state';
 import { TableState } from '../providers/table.state';
 import { AuthService } from '../../providers/auth.service';
 import { AuthState } from '../../providers/auth.state';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-bill',
@@ -43,6 +44,9 @@ export class BillComponent implements OnInit {
     });
     this.orderState.order.subscribe(o => {
       this.order = o;
+      if (this.order !== null) {
+        this.order['dateString'] = moment(this.order.date).format('DD/MM/YYYY');
+      }
       this.calcTotal();
     });
     this.orderState.getOrder(this.orderId);

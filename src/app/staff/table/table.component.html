@@ -1,6 +1,5 @@
 <div class="header" *ngIf="order">
-  <h3>{{order.table.name}}</h3>
-  <p>{{order.status}}</p>
+  <h3>Table: {{order.table.name}}</h3>
 </div>
 
 <div class="header" *ngIf="!order">
@@ -26,11 +25,16 @@
           </div>
         </div>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item *ngFor="let item of order.foods">
         <div class="content">
           <div class="text">
+            <img mat-line [src]="'http://localhost:6969/api/image/' + item.food.pictures[0]" alt="" style="width:78px;
+              height:78px; padding-top: 8px; padding-right:5px">
             <h4 mat-line>{{item.food.name}}</h4>
-            <p mat-line> {{item.food.description}} </p>
+            <p class='mobile-show' mat-line>Quantity: {{item.quantity}}</p>
+            <p class='mobile-show' mat-line>Status: {{item.status}}</p>
+            <p class='mobile-show' *ngIf='item.status === "done"'> ({{item.kitchen.name}})</p>
           </div>
           <div class="price">
             <p mat-line> {{item.status}}</p>
@@ -53,7 +57,7 @@
     Food Menu
   </button>
   <button *ngIf='order !== null' style="margin-left: 8px;" class="btn btn-order" (click)="viewBill()">
-      Bill
-    </button>
+    Bill
+  </button>
   <button class="btn" style="margin-left: 8px;" [routerLink]="['/staff','tables']">Back To Tables</button>
 </div>

@@ -4,16 +4,18 @@
   flex-direction: column;
   .header {
     display: flex;
-    width: 960px;
+    width: 100%;
     justify-content: flex-end;
     button {
       margin-top: 16px;
+      margin-right: 16px;
     }
   }
   .table-board {
     display: flex;
     flex-wrap: wrap;
-    width: 960px;
+    align-content: center;
+    width: 100%;
     .table-card {
       margin: 40px;
       max-width: 200px;

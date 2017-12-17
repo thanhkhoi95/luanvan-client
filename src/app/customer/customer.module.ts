@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomerComponent } from './customer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { OrderComponent } from './order/order.component';
+import { TableComponent } from './table/table.component';
 import { BillComponent } from './bill/bill.component';
 import { CustomerRoutingModule } from './customer.routing';
 import { MatListModule } from '@angular/material/list';
@@ -36,7 +37,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CustomerComponent,
         WelcomeComponent,
         OrderComponent,
-        BillComponent],
+        TableComponent,
+        BillComponent
+    ],
     providers: [
         FoodState,
         TableState,

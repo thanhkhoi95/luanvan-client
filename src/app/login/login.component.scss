@@ -14,8 +14,18 @@
     .pick-table {
         height: 100%;
         width: 28%;
-        padding: 25px 15px;
+        @media screen and (max-width: 640px) {
+            width: 50%;
+        }
         margin-left: 40px;
+        @media screen and (max-width: 400px) {
+            width: 100%;
+            margin: 0;
+        }
+        padding: 25px 15px;
+        @media screen and (max-height: 450px) {
+            width: 45%;
+        }
         background-color: rgba(0, 0, 0, 0.7);
         .contains {
             text-align: center;

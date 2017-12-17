@@ -9,15 +9,15 @@
             height:78px; padding-top: 8px; padding-right:5px">
             <div class="text">
               <h4 mat-line>{{food.name}}</h4>
-              <p mat-line> {{food.description}} </p>
               <p mat-line> Price: {{food.price}} VND</p>
             </div>
             <div class="input">
-              <input [(ngModel)]="food.quantity" type="text" placeholder="Quantity">
+              <input [(ngModel)]="food.quantity" type="text" placeholder="qty">
             </div>
           </div>
 
         </mat-list-option>
+        <br>
         <mat-divider></mat-divider>
       </div>
 
